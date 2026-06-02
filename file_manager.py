@@ -23,8 +23,8 @@ def automate_folder_cleanup():
     for filename in os.listdir(current_directory):
         file_path = os.path.join(current_directory, filename)
         
-        # Skip if it's a folder or the script itself
-        if os.path.isdir(file_path) or filename in ['file_manager.py', 'chatbot.py']:
+        # FIXED: Added 'README.md' to the skip list so it stays in the main folder!
+        if os.path.isdir(file_path) or filename in ['file_manager.py', 'chatbot.py', 'README.md']:
             continue
             
         file_extension = os.path.splitext(filename)[1].lower()
@@ -35,7 +35,7 @@ def automate_folder_cleanup():
                 os.makedirs(image_folder)
             shutil.move(file_path, os.path.join(image_folder, filename))
             moved_images += 1
-            print(file_path)
+            print(f"Moved Image: {filename}")
             
         # Move Documents
         elif file_extension in doc_extensions:
@@ -43,6 +43,7 @@ def automate_folder_cleanup():
                 os.makedirs(document_folder)
             shutil.move(file_path, os.path.join(document_folder, filename))
             moved_docs += 1
+            print(f"Moved Document: {filename}")
 
     print("\n📊 Run Summary:")
     print(f"✅ Images organized: {moved_images}")
