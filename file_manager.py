@@ -23,7 +23,7 @@ def automate_folder_cleanup():
     for filename in os.listdir(current_directory):
         file_path = os.path.join(current_directory, filename)
         
-        # FIXED: Added 'README.md' to the skip list so it stays in the main folder!
+        # FIXED: Added 'README.md' to the skip list so it stays safe!
         if os.path.isdir(file_path) or filename in ['file_manager.py', 'chatbot.py', 'README.md']:
             continue
             
